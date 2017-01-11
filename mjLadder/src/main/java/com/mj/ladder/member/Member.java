@@ -37,7 +37,7 @@ public class Member{
 	private String team;
 	
 	@Column @NotEmpty
-	private String rank;
+	private String position;
 	
 	@Column @NotEmpty
 	private Date regDate;

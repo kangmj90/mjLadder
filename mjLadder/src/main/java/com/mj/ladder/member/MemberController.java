@@ -23,7 +23,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/members", method = RequestMethod.GET)
 	public @ResponseBody List<Member> getMemberList() {
-		logger.debug("logger debug");
+		logger.debug("logger debug members");
 		return service.getMemberList();
 	}
 	
@@ -49,7 +49,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/members/{seq}", method = RequestMethod.PUT)
-	public @ResponseBody Member updateMember(@RequestBody Member member) {
+	public @ResponseBody Member updateMember(@PathVariable int seq, Member member) {
+		member.setSeq(seq);
 		return service.updateMember(member);
 	}
 	
