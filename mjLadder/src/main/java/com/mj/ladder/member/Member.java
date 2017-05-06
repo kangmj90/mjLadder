@@ -1,18 +1,25 @@
 package com.mj.ladder.member;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.mj.ladder.game.Ladder;
+import com.mj.ladder.game.MemberLadder;
+import com.mj.ladder.result.Result;
 
 import lombok.Data;
 
@@ -27,22 +34,22 @@ public class Member{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int seq;
 	
-	@Column @NotEmpty
+	@Column
 	private String id;
 	
-	@Column @NotEmpty
+	@Column
 	private String name;
 	
-	@Column @NotEmpty
+	@Column
 	private String team;
 	
-	@Column @NotEmpty
+	@Column
 	private String position;
 	
-	@Column @NotEmpty
+	@Column
 	private Date regDate;
 	
-	@Column @NotEmpty
+	@Column(updatable=false)
 	private Date modDate;
 	
 	@PrePersist
@@ -55,5 +62,9 @@ public class Member{
 	public void preUpdate() {
 		modDate = new Date();
 	}
+	
+	@OneToMany(mappedBy = "memberSeq")
+//	private List<MemberLadder> memberLadder;
+	private List<Result> ladderResults = new ArrayList<Result>();
 	
 }
