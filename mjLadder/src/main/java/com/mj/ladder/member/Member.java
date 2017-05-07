@@ -15,10 +15,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import com.mj.ladder.game.Ladder;
-import com.mj.ladder.game.MemberLadder;
 import com.mj.ladder.result.Result;
 
 import lombok.Data;

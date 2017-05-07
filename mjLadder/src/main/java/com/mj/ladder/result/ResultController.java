@@ -21,6 +21,7 @@ public class ResultController {
 	
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
 	public @ResponseBody Result insertLadder(Member member, Ladder ladder) {
+		logger.debug("member : ", member);
 		return service.insertResults(member, ladder);
 	}
 	

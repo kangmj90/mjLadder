@@ -7,7 +7,6 @@ public class Ladder {
 	
 	public static int startRow = 0;
 	public static List<LadderPoint> ladderPointList = new ArrayList<LadderPoint>();
-	public static int maxRow;
 
 	public void setLadderPoint(int row, int col) {
 
@@ -36,9 +35,7 @@ public class Ladder {
 		
 	
 	public Member playLadder(Member member) {
-		
 		return getLadderPoint(startRow, member);
-		
 	}
 	
 	public int moveDown(int row) {
@@ -98,11 +95,6 @@ public class Ladder {
 			row = moveDown(row);
 			
 		}
-		
-			
-		LadderPoint ladderPoint = new LadderPoint();
-		ladderPoint.setCol(col);
-		ladderPoint.setRow(row);
 		
 		member.setPosition(col);
 		
