@@ -1,5 +1,8 @@
 package com.mj.ladder.oop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderMain {
 	
 	public static void main(String[] args) {
@@ -30,19 +33,18 @@ public class LadderMain {
 		ladder.setLadderPoint(5, 5);
 		ladder.setLadderPoint(7, 5);
 		
-		Member member = new Member();
-		
-		/**
-		 * 사용자 지정
-		 */
-		member.setPosition(1);
-		member.setUserName("강민정");
-		
-		/**
-		 * 사다리 시
-		 */
-		LadderPoint ladderPoint = ladder.playLadder(member);
-		System.out.println(ladderPoint);
+		List<Member> memberList = new ArrayList<Member>();
+		memberList.add(new Member(1, "똘기"));
+		memberList.add(new Member(2, "떵이"));
+		memberList.add(new Member(3, "호치"));
+		memberList.add(new Member(4, "새초미"));
+		memberList.add(new Member(5, "드라고"));
+		memberList.add(new Member(6, "요롱이"));
+
+		for (Member m : memberList) {
+			
+			System.out.println(ladder.playLadder(m));
+		}
 		
 	}
 }

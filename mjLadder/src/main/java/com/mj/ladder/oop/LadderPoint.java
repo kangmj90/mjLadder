@@ -7,9 +7,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class LadderPoint {
 
-	int col;
-	
 	int row;
+
+	int col;
 	
 	Direction direction;
 }

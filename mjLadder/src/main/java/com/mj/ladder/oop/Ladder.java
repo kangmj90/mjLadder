@@ -9,14 +9,14 @@ public class Ladder {
 	public static List<LadderPoint> ladderPointList = new ArrayList<LadderPoint>();
 	public static int maxRow;
 
-	public void setLadderPoint(int col, int row) {
+	public void setLadderPoint(int row, int col) {
 
-		setLadderRight(col, row);
-		setLadderLeft(col, row);
+		setLadderRight(row, col);
+		setLadderLeft(row, col);
 		
 	}
 	
-	public void setLadderRight(int col, int row) {
+	public void setLadderRight(int row, int col) {
 
 		LadderPoint ladderPoint = new LadderPoint();
 		ladderPoint.setCol(col);
@@ -25,21 +25,19 @@ public class Ladder {
 		ladderPointList.add(ladderPoint);
 	}
 	
-	public void setLadderLeft(int col, int row) {
+	public void setLadderLeft(int row, int col) {
 
 		LadderPoint ladderPoint = new LadderPoint();
-		ladderPoint.setCol(col-1);
+		ladderPoint.setCol(col+1);
 		ladderPoint.setRow(row);
 		ladderPoint.setDirection(Direction.LEFT);
 		ladderPointList.add(ladderPoint);
 	}
 		
 	
-	public LadderPoint playLadder(Member member) {
+	public Member playLadder(Member member) {
 		
-		int position = member.getPosition();
-		
-		return getLadderPoint(position, startRow);
+		return getLadderPoint(startRow, member);
 		
 	}
 	
@@ -55,22 +53,40 @@ public class Ladder {
 		return col+1;
 	}
 	
-	public Direction comparePoint(int col, int row) {
+	public Direction comparePoint(int row, int col) {
 		
 		Direction direction = Direction.DOWN;
 		
 		for (LadderPoint ladderPoint : ladderPointList) {
-			if ((col == ladderPoint.getCol()) && (row ==  ladderPoint.getRow())) direction = ladderPoint.getDirection(); break;
+			
+				if ((col == ladderPoint.getCol()) && (row ==  ladderPoint.getRow()))  {
+					direction = ladderPoint.getDirection(); 
+					break;
+				}
 		}
 		return direction;
 	}
 	
-	public LadderPoint getLadderPoint(int col, int row) {
+	public int setMaxRow() {
+		int row = 0;
+
+		for(LadderPoint ladderPoint : ladderPointList) {
+			row = Math.max(ladderPoint.getRow(), row);
+		}
 		
-			Direction direction = comparePoint(col, row);
+		return row;
+	}
+	
+	public Member getLadderPoint(int row, Member member) {
+		
+		int col = member.getPosition();
+		
+		while(row <= setMaxRow()) {
 			
+			Direction direction = comparePoint(row, col);
+
 			switch (direction.toString()) {
-			case "RIGTH" : 
+			case "RIGHT" : 
 				col = moveRight(col);
 				break;
 				
@@ -78,15 +94,18 @@ public class Ladder {
 				col = moveLeft(col);
 				break;
 				
-			default : 
-				row = moveDown(row);
-				break;
 			}
+			row = moveDown(row);
+			
+		}
+		
 			
 		LadderPoint ladderPoint = new LadderPoint();
 		ladderPoint.setCol(col);
 		ladderPoint.setRow(row);
 		
-		return ladderPoint;
+		member.setPosition(col);
+		
+		return member;
 	}
 }

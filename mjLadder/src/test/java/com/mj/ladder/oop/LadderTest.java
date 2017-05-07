@@ -9,8 +9,5 @@ public class LadderTest {
 	
 	@Test
 	public void getMemberPosition() {
-		Member member = new Member();
-		member.setPosition(1);
-		member.setUserName("User1");
 	}
 }
