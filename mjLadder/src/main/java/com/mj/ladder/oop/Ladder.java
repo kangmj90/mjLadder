@@ -12,7 +12,6 @@ public class Ladder {
 
 		setLadderRight(row, col);
 		setLadderLeft(row, col);
-		
 	}
 	
 	public void setLadderRight(int row, int col) {
@@ -33,11 +32,6 @@ public class Ladder {
 		ladderPointList.add(ladderPoint);
 	}
 		
-	
-	public Member playLadder(Member member) {
-		return getLadderPoint(startRow, member);
-	}
-	
 	public int moveDown(int row) {
 		return row+1;
 	}
@@ -99,5 +93,9 @@ public class Ladder {
 		member.setPosition(col);
 		
 		return member;
+	}
+	
+	public Member playLadder(Member member) {
+		return getLadderPoint(startRow, member);
 	}
 }
